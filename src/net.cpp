@@ -1969,7 +1969,8 @@ NCNN_LOGE("ncnn load_model 333333333333333");
             ret = -1;
             break;
         }
-        NCNN_LOGE("ncnn load_model layer_count:%d-start-%s", i, layer->name.c_str());
+        
+        NCNN_LOGE("ncnn load_model layer_count:%d-start-%s-%s", i, layer->name.c_str(), layer->type.c_str());
         int lret = layer->load_model(mb);
         NCNN_LOGE("ncnn load_model layer_count:%d-end", i);
         if (lret != 0)
