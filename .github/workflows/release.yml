@@ -39,9 +39,6 @@ jobs:
     strategy:
       matrix:
         opt:
-          - { vulkan: OFF, shared-lib: OFF, id: android               }
-          - { vulkan: OFF, shared-lib: ON,  id: android-shared        }
-          - { vulkan: ON,  shared-lib: OFF, id: android-vulkan        }
           - { vulkan: ON,  shared-lib: ON,  id: android-vulkan-shared }
     runs-on: ubuntu-latest
     env:
