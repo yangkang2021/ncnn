@@ -75,10 +75,15 @@ int ConvolutionDepthWise::load_param(const ParamDict& pd)
 
 int ConvolutionDepthWise::load_model(const ModelBin& mb)
 {
+    NCNN_LOGE("ConvolutionDepthWise::load_model");
+
     if (dynamic_weight)
         return 0;
 
+    NCNN_LOGE("mb.load start");
     weight_data = mb.load(weight_data_size, 0);
+    NCNN_LOGE("mb.load end");
+
     if (weight_data.empty())
         return -100;
 

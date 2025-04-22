@@ -57,6 +57,8 @@ int Layer::load_param(const ParamDict& /*pd*/)
 
 int Layer::load_model(const ModelBin& /*mb*/)
 {
+    NCNN_LOGE("Layer::load_model");
+
     return 0;
 }
 

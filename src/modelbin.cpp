@@ -92,6 +92,8 @@ ModelBinFromDataReader& ModelBinFromDataReader::operator=(const ModelBinFromData
 
 Mat ModelBinFromDataReader::load(int w, int type) const
 {
+    NCNN_LOGE("ModelBinFromDataReader::load");
+
     Mat m;
 
     if (type == 0)
