@@ -1932,6 +1932,7 @@ int Net::load_param_bin(const DataReader& dr)
 
 int Net::load_model(const DataReader& dr)
 {
+    NCNN_LOGE("ncnn load_model 11111111111");
     if (d->layers.empty())
     {
         NCNN_LOGE("network graph not ready");
@@ -1942,7 +1943,7 @@ int Net::load_model(const DataReader& dr)
 
     // load file
     int ret = 0;
-
+NCNN_LOGE("ncnn load_model 22222222222");
 #if NCNN_VULKAN
     if (opt.use_vulkan_compute)
     {
@@ -1954,10 +1955,11 @@ int Net::load_model(const DataReader& dr)
         }
     }
 #endif // NCNN_VULKAN
-
+NCNN_LOGE("ncnn load_model 333333333333333");
     ModelBinFromDataReader mb(dr);
     for (int i = 0; i < layer_count; i++)
     {
+        NCNN_LOGE("ncnn load_model layer_count:%d-1111111111", i);
         Layer* layer = d->layers[i];
 
         //Here we found inconsistent content in the parameter file.
@@ -1967,8 +1969,9 @@ int Net::load_model(const DataReader& dr)
             ret = -1;
             break;
         }
-
+        NCNN_LOGE("ncnn load_model layer_count:%d-start", i);
         int lret = layer->load_model(mb);
+        NCNN_LOGE("ncnn load_model layer_count:%d-end", i);
         if (lret != 0)
         {
 #if NCNN_STRING
@@ -1994,7 +1997,7 @@ int Net::load_model(const DataReader& dr)
             break;
         }
     }
-
+NCNN_LOGE("ncnn load_model 44444444444444");
     if (opt.use_local_pool_allocator)
     {
         if (opt.blob_allocator == 0)
@@ -2014,7 +2017,7 @@ int Net::load_model(const DataReader& dr)
             }
         }
     }
-
+NCNN_LOGE("ncnn load_model 55555555555");
 #if NCNN_VULKAN
     if (ret == 0 && opt.use_vulkan_compute)
     {
