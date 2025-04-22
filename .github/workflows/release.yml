@@ -42,7 +42,7 @@ jobs:
           - { vulkan: ON,  shared-lib: ON,  id: android-vulkan-shared }
     runs-on: ubuntu-latest
     env:
-      PACKAGENAME: ncnn-250422
+      PACKAGENAME: ncnn-250422-2
       NCNN_CMAKE_OPTIONS: |
         -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake \
         -DANDROID_PLATFORM=android-21 \
