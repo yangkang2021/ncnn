@@ -160,12 +160,15 @@ Mat ModelBinFromDataReader::load(int w, int type) const
                 }
 
 #if __BIG_ENDIAN__
+                
                 for (int i = 0; i < w; i++)
                 {
+                    NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333ddddddddddddd111111111111--%d",i);
                     swap_endianness_16(&float16_weights[i]);
                 }
 #endif
 
+                NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333ddddddddddddd22222");
                 m = Mat::from_float16(&float16_weights[0], w);
                 NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333eeeeeeeeeeeee");
             }

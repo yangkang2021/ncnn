@@ -1212,13 +1212,15 @@ void Mat::substract_mean_normalize(const float* mean_vals, const float* norm_val
 
 Mat Mat::from_float16(const unsigned short* data, int size)
 {
+    NCNN_LOGE("Mat::from_float16,1111111111111,size=%d", size);
+
     Mat src(size, (void*)data, (size_t)2u);
     Mat dst;
-
+    NCNN_LOGE("Mat::from_float16,2222222222222");
     Option opt;
     opt.num_threads = 1; // TODO
     cast_float16_to_float32(src, dst, opt);
-
+    NCNN_LOGE("Mat::from_float16,3333333333333333");
     return dst;
 }
 
