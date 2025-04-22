@@ -139,16 +139,20 @@ Mat ModelBinFromDataReader::load(int w, int type) const
             // try reference data
             const void* refbuf = 0;
             nread = d->dr.reference(align_data_size, &refbuf);
+            NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333aaaaaaaaaaaaaa");
             if (nread == align_data_size)
             {
                 m = Mat::from_float16((const unsigned short*)refbuf, w);
+                NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333bbbbbbbbbbbbbbbb");
             }
             else
 #endif
             {
                 std::vector<unsigned short> float16_weights;
                 float16_weights.resize(align_data_size);
+                NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333ccccccccccccccccccc");
                 nread = d->dr.read(&float16_weights[0], align_data_size);
+                NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333ddddddddddddd");
                 if (nread != align_data_size)
                 {
                     NCNN_LOGE("ModelBin read float16_weights failed %zd", nread);
@@ -163,6 +167,7 @@ Mat ModelBinFromDataReader::load(int w, int type) const
 #endif
 
                 m = Mat::from_float16(&float16_weights[0], w);
+                NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333eeeeeeeeeeeee");
             }
 
             return m;
