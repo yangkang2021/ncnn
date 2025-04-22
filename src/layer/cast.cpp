@@ -50,11 +50,15 @@ signed char float32_to_int8(float value)
 
 int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) const
 {
+    NCNN_LOGE("Cast::forward 1111111111111");
+
     if (type_from == type_to)
     {
         top_blob = bottom_blob;
         return 0;
     }
+
+   
 
     int w = bottom_blob.w;
     int h = bottom_blob.h;
@@ -63,6 +67,8 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
     int dims = bottom_blob.dims;
     size_t elemsize = bottom_blob.elemsize;
     int elempack = bottom_blob.elempack;
+
+    NCNN_LOGE("Cast::forward 2222222222222, dims=%d", dims);
 
     size_t out_elemsize = elemsize;
     if (type_to == 1)
@@ -88,18 +94,22 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (dims == 1)
     {
+        NCNN_LOGE("Cast::forward aaaaaaaaaa");
         top_blob.create(w, out_elemsize, elempack, opt.blob_allocator);
     }
     else if (dims == 2)
     {
+        NCNN_LOGE("Cast::forward bbbbbbbbbbbbbb");
         top_blob.create(w, h, out_elemsize, elempack, opt.blob_allocator);
     }
     else if (dims == 3)
     {
+        NCNN_LOGE("Cast::forward cccccccccc");
         top_blob.create(w, h, channels, out_elemsize, elempack, opt.blob_allocator);
     }
     else if (dims == 4)
     {
+        NCNN_LOGE("Cast::forward ddddddddddd");
         top_blob.create(w, h, d, channels, out_elemsize, elempack, opt.blob_allocator);
     }
     if (top_blob.empty())
@@ -109,6 +119,7 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (type_from == 1 && type_to == 2)
     {
+        NCNN_LOGE("Cast::forward eeeeeeeeeeeeeeeeeee");
         #pragma omp parallel for num_threads(opt.num_threads)
         for (int q = 0; q < channels; q++)
         {
@@ -124,6 +135,7 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (type_from == 2 && type_to == 1)
     {
+        NCNN_LOGE("Cast::forward ffffffffffffffff");
         #pragma omp parallel for num_threads(opt.num_threads)
         for (int q = 0; q < channels; q++)
         {
@@ -139,6 +151,7 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (type_from == 3 && type_to == 1)
     {
+        NCNN_LOGE("Cast::forward gggggggg");
         #pragma omp parallel for num_threads(opt.num_threads)
         for (int q = 0; q < channels; q++)
         {
@@ -154,6 +167,7 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (type_from == 1 && type_to == 4)
     {
+        NCNN_LOGE("Cast::forward hhhhhhhhhhhhhhhh");
         #pragma omp parallel for num_threads(opt.num_threads)
         for (int q = 0; q < channels; q++)
         {
@@ -169,6 +183,7 @@ int Cast::forward(const Mat& bottom_blob, Mat& top_blob, const Option& opt) cons
 
     if (type_from == 4 && type_to == 1)
     {
+        NCNN_LOGE("Cast::forward iiiiiiiiiiiiiii");
         #pragma omp parallel for num_threads(opt.num_threads)
         for (int q = 0; q < channels; q++)
         {
