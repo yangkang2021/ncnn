@@ -1566,20 +1566,22 @@ void cast_float32_to_float16(const Mat& src, Mat& dst, const Option& opt)
 
 void cast_float16_to_float32(const Mat& src, Mat& dst, const Option& opt)
 {
-    Layer* cast = create_layer(LayerType::Cast);
+    NCNN_LOGE("cast_float16_to_float32");
 
+    Layer* cast = create_layer(LayerType::Cast);
+    NCNN_LOGE("cast_float16_to_float32,create_layer");
     ParamDict pd;
     pd.set(0, 2);
     pd.set(1, 1);
-
+    
     cast->load_param(pd);
-
+    NCNN_LOGE("cast_float16_to_float32,load_param");
     cast->create_pipeline(opt);
-
+    NCNN_LOGE("cast_float16_to_float32,create_pipeline");
     cast->forward(src, dst, opt);
-
+    NCNN_LOGE("cast_float16_to_float32,forward");
     cast->destroy_pipeline(opt);
-
+    NCNN_LOGE("cast_float16_to_float32,destroy_pipeline");
     delete cast;
 }
 
