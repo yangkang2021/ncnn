@@ -92,12 +92,14 @@ ModelBinFromDataReader& ModelBinFromDataReader::operator=(const ModelBinFromData
 
 Mat ModelBinFromDataReader::load(int w, int type) const
 {
-    NCNN_LOGE("ModelBinFromDataReader::load");
+    NCNN_LOGE("ModelBinFromDataReader::load,type=%d", type);
 
     Mat m;
 
     if (type == 0)
     {
+        NCNN_LOGE("ModelBinFromDataReader::load,11111111111111111111");
+
         size_t nread;
 
         union
@@ -118,6 +120,7 @@ Mat ModelBinFromDataReader::load(int w, int type) const
             NCNN_LOGE("ModelBin read flag_struct failed %zd", nread);
             return Mat();
         }
+        NCNN_LOGE("ModelBinFromDataReader::load,2222222222222222222");
 
 #if __BIG_ENDIAN__
         swap_endianness_32(&flag_struct.tag);
@@ -127,9 +130,11 @@ Mat ModelBinFromDataReader::load(int w, int type) const
 
         if (flag_struct.tag == 0x01306B47)
         {
+           
+
             // half-precision data
             size_t align_data_size = alignSize(w * sizeof(unsigned short), 4);
-
+            NCNN_LOGE("ModelBinFromDataReader::load,333333333333333333");
 #if !__BIG_ENDIAN__
             // try reference data
             const void* refbuf = 0;
@@ -166,7 +171,7 @@ Mat ModelBinFromDataReader::load(int w, int type) const
         {
             // int8 data
             size_t align_data_size = alignSize(w, 4);
-
+            NCNN_LOGE("ModelBinFromDataReader::load,44444444444444444");
 #if !__BIG_ENDIAN__
             // try reference data
             const void* refbuf = 0;
@@ -198,6 +203,7 @@ Mat ModelBinFromDataReader::load(int w, int type) const
         }
         else if (flag_struct.tag == 0x0002C056)
         {
+            NCNN_LOGE("ModelBinFromDataReader::load,555555555555555");
 #if !__BIG_ENDIAN__
             // try reference data
             const void* refbuf = 0;
@@ -234,6 +240,8 @@ Mat ModelBinFromDataReader::load(int w, int type) const
 
         if (flag != 0)
         {
+            NCNN_LOGE("ModelBinFromDataReader::load,666666666666666666666666");
+
             m.create(w);
             if (m.empty())
                 return m;
@@ -272,6 +280,7 @@ Mat ModelBinFromDataReader::load(int w, int type) const
         }
         else if (flag_struct.f0 == 0)
         {
+            NCNN_LOGE("ModelBinFromDataReader::load,66666666666666666");
 #if !__BIG_ENDIAN__
             // try reference data
             const void* refbuf = 0;
