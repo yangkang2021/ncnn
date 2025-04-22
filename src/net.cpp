@@ -1943,7 +1943,7 @@ int Net::load_model(const DataReader& dr)
 
     // load file
     int ret = 0;
-NCNN_LOGE("ncnn load_model 22222222222");
+NCNN_LOGE("ncnn load_model 22222222222,layer_count=%d", layer_count);
 #if NCNN_VULKAN
     if (opt.use_vulkan_compute)
     {
@@ -1969,7 +1969,7 @@ NCNN_LOGE("ncnn load_model 333333333333333");
             ret = -1;
             break;
         }
-        NCNN_LOGE("ncnn load_model layer_count:%d-start", i);
+        NCNN_LOGE("ncnn load_model layer_count:%d-start-%s", i, layer->name.c_str());
         int lret = layer->load_model(mb);
         NCNN_LOGE("ncnn load_model layer_count:%d-end", i);
         if (lret != 0)
